@@ -14,6 +14,8 @@ public class EnnemySpawner : MonoBehaviour
         {
             //instantie un ennemi à une position aléatoire sur le terrain
             Instantiate(PrefabEnnemy, position: new Vector3(Random.Range(0, 100), 2f, Random.Range(0, 100)), Quaternion.identity);
+            
+            //attend 10 secondes
             yield return new WaitForSeconds(10f);
         }
     }

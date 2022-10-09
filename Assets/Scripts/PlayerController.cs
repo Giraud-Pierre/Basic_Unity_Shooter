@@ -14,13 +14,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float MovementSpeed = 1f; //on peut changer la vitesse de déplacement du joueur ici
     [SerializeField] private int health = 10;   //on peut changer les points de vie du joueur ici
 
-
-    private float CameraYAngle; //va recueillir la rotation de la caméra autour de l'axe Y pour permettre le déplacement du joueur dans le bon sens
-    private float SideMovement; //recueille les entrée sur les touches permettant de se déplacer sur les côté (q,d et flèche gauche et droite)
-    private float ForwardMovement; //recueille les entrée sur les touches permettant de se déplacer en avant ou en arrière (z,s et flèche du haut et du bas)
-    private float realMovementSpeed; //recalcule la véritable vitesse du joueur à partir de la vitesse ci-dessus et d'autres paramètres 
-    private Vector3 Movement; //calcule le mouvement effectué par le joueur lors de la frame
-    private Rigidbody Rb;   //recueille le rigidbody du PlayerBody
+    //va recueillir la rotation de la caméra autour de l'axe Y pour permettre le déplacement du joueur dans le bon sens
+    private float CameraYAngle;
+    //recueille les entrée sur les touches permettant de se déplacer sur les côté (q,d et flèche gauche et droite)
+    private float SideMovement;
+    //recueille les entrée sur les touches permettant de se déplacer en avant ou en arrière (z,s et flèche du haut et du bas)
+    private float ForwardMovement;
+    //recalcule la véritable vitesse du joueur à partir de la vitesse ci-dessus et d'autres paramètres 
+    private float realMovementSpeed;
+    //calcule le mouvement effectué par le joueur lors de la frame
+    private Vector3 Movement;
+    //recueille le rigidbody du PlayerBody
+    private Rigidbody Rb;   
     
 
     
@@ -32,8 +37,10 @@ public class PlayerController : MonoBehaviour
 
         GameObject bullet = Instantiate(
                                 Bullet, 
+
                                 //permet de positionner la balle devant la caméra
                                 Camera.transform.position + 2 * BulletAddedPosition,
+
                                 //permet de positionner la balle dans la même orientation que la camera 
                                 Camera.transform.rotation * Quaternion.Euler(90f,0f,0f)  //permet de faire apparaître la balle à l'horizontal et non à la vertical
                                 );
@@ -102,9 +109,11 @@ public class PlayerController : MonoBehaviour
 
     private void KillPlayer() //tue le joueur
     {
-        Debug.Log("Vous avez perdu !!!");
+        Debug.Log("Vous avez perdu !!!"); //affiche un message dans la console
+
         //délie la caméra du playerbody pour que l'on puisse détruire le second sans détruire la première
         Camera.transform.parent = null; 
+
         Destroy(gameObject); //détruit le PlayerBody
     }
 
