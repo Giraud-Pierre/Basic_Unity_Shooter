@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //permet de détruire la balle s'il est tombe par terre (sur le terrain)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
@@ -13,12 +13,9 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-
-    // Update is called once per frame
     void Update()
     {
-        if(transform.position.y <= -1)
+        if(transform.position.y <= -1) //permet de détruire la balle si elle sort du terrain
         {
             Destroy(gameObject);
         }
